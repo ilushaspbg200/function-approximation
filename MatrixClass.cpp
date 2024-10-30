@@ -2,7 +2,7 @@
 void Matrix::SetMatrix()
 {
 	array = new double* [line];
-	cout << "Ââåäèòå ìàòðèöó: ";
+	cout << "Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ Ã¬Ã Ã²Ã°Ã¨Ã¶Ã³: ";
 	for (int i = 0; i < line; i++) {
 		array[i] = new double[column];
 		for (int j = 0; j < column; j++)
@@ -22,7 +22,7 @@ void Matrix::ShowMyMatrix()
 
 }
 
-void Matrix::operator=(const Matrix& other) // ïðèñâàèâàíèå
+void Matrix::operator=(const Matrix& other) // Ã¯Ã°Ã¨Ã±Ã¢Ã Ã¨Ã¢Ã Ã­Ã¨Ã¥
 {
 	for (int i = 0; i < line; i++) {
 		delete[] array[i];
@@ -136,30 +136,6 @@ Matrix Matrix::operator*(const double num)
 	}
 	return temp;
 }
-//Matrix Matrix::inverseMatrix() {
-//	int n = this->line;
-//	double** res;
-//	double* y = new double[n];
-//	double* gau;
-//	int i, j, k;
-//	res = new double* [n];
-//	for (i = 0; i < n; i++) {
-//		res[i] = new double[n];
-//	}
-//	for (i = 0; i < n; i++) {
-//
-//		for (j = 0; j < n; j++) {
-//			if (i == j) y[j] = 1;
-//			else y[j] = 0;
-//		}
-//		gau = gauss(this->array, y, n);
-//		for (k = 0; k < n; k++) {
-//			res[k][i] = gau[k];
-//		}
-//	}
-//	Matrix RES(n, n, res);
-//	return RES;
-//}
 
 Matrix Matrix::inverseMatrix()
 {
@@ -176,10 +152,10 @@ Matrix Matrix::inverseMatrix()
 		result.array[i][i] = 1.0;
 	}
 
-	// Ïðèâîäèì ìàòðèöó ê âåðõíåòðåóãîëüíîìó âèäó
+	// ÃÃ°Ã¨Ã¢Ã®Ã¤Ã¨Ã¬ Ã¬Ã Ã²Ã°Ã¨Ã¶Ã³ Ãª Ã¢Ã¥Ã°ÃµÃ­Ã¥Ã²Ã°Ã¥Ã³Ã£Ã®Ã«Ã¼Ã­Ã®Ã¬Ã³ Ã¢Ã¨Ã¤Ã³
 	for (int i = 0; i < n; ++i) {
 		if (temp[i][i] == 0) {
-			throw std::invalid_argument("Ìàòðèöà âûðîæäåííàÿ, îáðàòíîé ìàòðèöû íå ñóùåñòâóåò");
+			throw std::invalid_argument("ÃŒÃ Ã²Ã°Ã¨Ã¶Ã  Ã¢Ã»Ã°Ã®Ã¦Ã¤Ã¥Ã­Ã­Ã Ã¿, Ã®Ã¡Ã°Ã Ã²Ã­Ã®Ã© Ã¬Ã Ã²Ã°Ã¨Ã¶Ã» Ã­Ã¥ Ã±Ã³Ã¹Ã¥Ã±Ã²Ã¢Ã³Ã¥Ã²");
 		}
 		for (int j = i + 1; j < n; ++j) {
 			double factor = temp[j][i] / temp[i][i];
@@ -190,7 +166,7 @@ Matrix Matrix::inverseMatrix()
 		}
 	}
 
-	// Ïðèâîäèì ìàòðèöó ê äèàãîíàëüíîìó âèäó
+	// ÃÃ°Ã¨Ã¢Ã®Ã¤Ã¨Ã¬ Ã¬Ã Ã²Ã°Ã¨Ã¶Ã³ Ãª Ã¤Ã¨Ã Ã£Ã®Ã­Ã Ã«Ã¼Ã­Ã®Ã¬Ã³ Ã¢Ã¨Ã¤Ã³
 	for (int i = 0; i < n; ++i) {
 		double factor = temp[i][i];
 		for (int j = 0; j < n; ++j) {
@@ -199,7 +175,7 @@ Matrix Matrix::inverseMatrix()
 		}
 	}
 
-	// Îáðàòíûé ïðîõîä ìåòîäà Ãàóññà-Æîðäàíà
+	// ÃŽÃ¡Ã°Ã Ã²Ã­Ã»Ã© Ã¯Ã°Ã®ÃµÃ®Ã¤ Ã¬Ã¥Ã²Ã®Ã¤Ã  ÃƒÃ Ã³Ã±Ã±Ã -Ã†Ã®Ã°Ã¤Ã Ã­Ã 
 	for (int i = n - 1; i > 0; --i) {
 		for (int j = i - 1; j >= 0; --j) {
 			double factor = temp[j][i];
