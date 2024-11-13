@@ -10,12 +10,12 @@
 #include <numeric>
 #include "matplotlibcpp.h"
 #include "MatrixClass.h"
-#include <limits>  // Для std::numeric_limits
+#include <limits>  //
 using namespace std;
 namespace plt = matplotlibcpp;
 const double a = -1.0;
 const double b = 1.0;
-//изначальная функция
+
 double f(double x) {
     return x * x * sin(x);
 }
@@ -23,7 +23,6 @@ double f(double x) {
 double* gauss(double** A, double* b, int n)
 {
     for (int i = 0; i < n; ++i) {
-        // Поиск максимального элемента
         int max_row = i;
         for (int k = i + 1; k < n; ++k) {
             if (std::abs(A[k][i]) > std::abs(A[max_row][i])) {
@@ -111,7 +110,6 @@ double orthogonal_polynomial_method(const std::vector<double>& x, const std::vec
     std::fill(q[0].begin(), q[0].end(), 1.0);  // Fill q[0] with 1s
     q_val[0] = 1.0;
 
-    // Calculate the mean of x
     double x_sum = std::accumulate(x.begin(), x.end(), 0.0);
     double x_mean = x_sum / m;
 
@@ -177,7 +175,7 @@ double orthogonal_polynomial_method(const std::vector<double>& x, const std::vec
 
 int main() {
     setlocale(LC_ALL, "rus");
-    int m = 50; // количество точек
+    int m = 50; 
     vector<double> x_val = points(m);
     //double eps = 0.000001;
     double eps = 0.1;
