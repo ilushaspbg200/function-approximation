@@ -2,7 +2,6 @@
 void Matrix::SetMatrix()
 {
 	array = new double* [line];
-	cout << "Ââåäèòå ìàòðèöó: ";
 	for (int i = 0; i < line; i++) {
 		array[i] = new double[column];
 		for (int j = 0; j < column; j++)
@@ -22,7 +21,7 @@ void Matrix::ShowMyMatrix()
 
 }
 
-void Matrix::operator=(const Matrix& other) // ïðèñâàèâàíèå
+void Matrix::operator=(const Matrix& other)
 {
 	for (int i = 0; i < line; i++) {
 		delete[] array[i];
@@ -152,10 +151,9 @@ Matrix Matrix::inverseMatrix()
 		result.array[i][i] = 1.0;
 	}
 
-	// Ïðèâîäèì ìàòðèöó ê âåðõíåòðåóãîëüíîìó âèäó
 	for (int i = 0; i < n; ++i) {
 		if (temp[i][i] == 0) {
-			throw std::invalid_argument("Ìàòðèöà âûðîæäåííàÿ, îáðàòíîé ìàòðèöû íå ñóùåñòâóåò");
+			throw std::invalid_argument("The matrix is degenerate, there is no inverse matrix");
 		}
 		for (int j = i + 1; j < n; ++j) {
 			double factor = temp[j][i] / temp[i][i];
@@ -166,7 +164,6 @@ Matrix Matrix::inverseMatrix()
 		}
 	}
 
-	// Ïðèâîäèì ìàòðèöó ê äèàãîíàëüíîìó âèäó
 	for (int i = 0; i < n; ++i) {
 		double factor = temp[i][i];
 		for (int j = 0; j < n; ++j) {
@@ -175,7 +172,6 @@ Matrix Matrix::inverseMatrix()
 		}
 	}
 
-	// Îáðàòíûé ïðîõîä ìåòîäà Ãàóññà-Æîðäàíà
 	for (int i = n - 1; i > 0; --i) {
 		for (int j = i - 1; j >= 0; --j) {
 			double factor = temp[j][i];
